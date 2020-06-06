@@ -1,0 +1,31 @@
+---
+# handlers file for ghidra
+- name: Remove temporary Ghidra directory
+  become: yes
+  file:
+    name: "{{ ghidra_temp_dir.path }}"
+    state: absent
+
+- name: Remove temporary Ghidra desktop directory
+  become: yes
+  file:
+    name: "{{ ghidra_desktop_tmp_directory.path }}"
+    state: absent
+
+- name: Remove temporary Ghidra icon directory
+  become: yes
+  file:
+    name: "{{ usb_hid_descriptor_tool_icon_tmp_directory.path }}"
+    state: absent
+
+- name: Remove desktop-file-utils
+  become: yes
+  package:
+    name: desktop-file-utils
+    state: absent
+
+- name: Remove rsync
+  become: yes
+  package:
+    name: rsync
+    state: absent

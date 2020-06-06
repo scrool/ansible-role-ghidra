@@ -1,0 +1,25 @@
+---
+# defaults file for ghidra
+# Path to an release archive of Ghidra on a control host or
+# URL to download the archive from.
+ghidra_archive_src: ""
+
+# By default installs the program. Set to "absent" to uninstall.
+ghidra_state: present
+
+# Base name of installation directory and name part of a desktop file. If set
+# to empty, top level of release archive is used instead.
+ghidra_top_dest_name_override: Ghidra
+
+# Parent directory in which program will be installed. See also
+# `ghidra_top_dest_name_override`.
+ghidra_install_parent_dir: /opt
+
+# Parent directory in which desktop file will be installed. See also
+# `ghidra_top_dest_name_override`.
+ghidra_desktop_parent_dir: /usr/local/share/applications
+
+# If set to "yes", contents of installation directory and desktop file are not
+# compared against contents of `ghidra_archive_src` when uninstall,
+# upgrade or downgrade.
+ghidra_force_remove: no

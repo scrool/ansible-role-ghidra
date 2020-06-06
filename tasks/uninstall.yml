@@ -1,0 +1,28 @@
+---
+# uninstall tasks file for ghidra
+- name: Fail if override is not set and force remove is set
+  fail:
+    msg: If force remove is set, ghidra_top_dest_name_override must be defined as well
+  when: ghidra_top_dest_name_override | length == 0
+
+- name: Set top_dest_name from override only
+  set_fact:
+    top_dest_name: "{{ ghidra_top_dest_name_override }}"
+
+- name: Remove installed icon file
+  become: yes
+  file:
+    name: "{{ icon_file_full }}"
+    state: absent
+
+- name: Remove installed content
+  become: yes
+  file:
+    name: "{{ install_dest_full }}"
+    state: absent
+
+- name: Remove installed desktop file
+  become: yes
+  file:
+    name: "{{ desktop_file_full }}"
+    state: absent

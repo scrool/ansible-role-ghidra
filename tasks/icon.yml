@@ -1,0 +1,16 @@
+---
+# icon tasks file for ghidra
+- name: Create a temporary directory for an icon
+  tempfile:
+    state: directory
+  register: ghidra_icon_tmp_directory
+  notify: Remove temporary Ghidra icon directory
+
+- name: Install icoutils to extract an icon
+  package:
+    name: icoutils
+  notify: Remove icoutils
+
+- name: Extract an icon
+  # Always extract the icon and find out if it needs to be updated later
+  command: wrestool -o "{{ tmp_icon_file_full }}" -x --name='DT' --type=group_icon "{{ tmp_original_icon_full }}"  # noqa 301

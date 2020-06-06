@@ -1,0 +1,12 @@
+---
+# vars file for ghidra
+top_src_name: "{{ unarchived_parents | first }}"
+top_dest_name: "{{ (ghidra_top_dest_name_override | length > 0) | ternary(ghidra_top_dest_name_override, top_src_name) }}"
+
+tmp_desktop_file_full: "{{ ghidra_desktop_tmp_directory.path }}/{{ top_dest_name }}.desktop"
+desktop_file_full: "{{ ghidra_desktop_parent_dir }}/{{ top_dest_name }}.desktop"
+
+tmp_original_icon_full: "{{ ghidra_temp_dir.path }}/support/ghidra.ico"
+icon_file_full: "{{ install_dest_full }}/{{ top_dest_name }}.ico"
+
+install_dest_full: "{{ ghidra_install_parent_dir }}/{{ top_dest_name }}"

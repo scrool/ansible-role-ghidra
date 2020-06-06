@@ -1,0 +1,22 @@
+---
+# tasks file for ghidra
+- name: Fail if desired state is invalid
+  fail:
+    msg: State variable must be either "present" or "absent"
+  when: ghidra_state not in ["present", "absent"]
+
+- name: Uninstall tasks of Ghidra
+  include_tasks: uninstall.yml
+  when:
+    - ghidra_state == "absent"
+    - ghidra_force_remove | bool
+
+- name: Install tasks of Ghidra
+  include_tasks: install.yml
+  when: ghidra_state == "present"
+
+- name: Safe uninstall tasks of Ghidra
+  include_tasks: safe_uninstall.yml
+  when:
+    - ghidra_state == "absent"
+    - not (ghidra_force_remove | bool)

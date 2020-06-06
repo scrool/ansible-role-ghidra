@@ -1,0 +1,22 @@
+galaxy_info:
+  author: Pavol Babinčák
+  role_name: ghidra
+  description: >
+    Installs or uninstalls Ghidra - A software reverse engineering (SRE)
+    framework.
+  company: none
+  license: MIT
+  min_ansible_version: 2.9
+
+  platforms:
+    - name: Fedora
+      versions:
+        - 31
+
+  galaxy_tags:
+    - desktop
+    - disassembler
+    - ghidra
+    - sre
+
+dependencies: []
